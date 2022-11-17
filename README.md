@@ -17,6 +17,8 @@ To run the tests
 --) Users can see all the products  
 --) Users can see products from a specific store  
 --) Users can logout from the website  
+--) Users can see the details of stores
+--) Users can see the details of products
 
 --) Customers can add the products to their favorite list   
 --) Customers can remove the products from their favorite list  
