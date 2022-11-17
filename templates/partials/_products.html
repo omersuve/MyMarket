@@ -1,0 +1,25 @@
+{% for product in products %}
+<div class="card border-primary mb-3" style="max-width: 15rem;">
+    <div class="card-header">{{ product.name|title }}</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title" style="font-size: 1rem;">
+        <a href="{% url 'product_details' product.slug %}" style="font-size: smaller;">{{ product.name }}</a>
+        </h5>
+        <p class="card-text mb-0" style="font-size: smaller;" >{{ product.name }}</p>
+        {% if not user.profile.is_store_owner %}
+        <form action="{% url 'add_product_user' product.id  %}">
+            <input type="submit" style="font-size: smaller;" value="Add To Favorites" />
+        </form>
+        <form action="{% url 'remove_product_user' product.id  %}">
+            <input type="submit" style="font-size: smaller;" value="Remove From Favorites" />
+        </form>
+        {% endif %}
+        {% if user.profile.owned_store_name|slugify == selected_store %}
+            <form action="{% url 'remove_product' user.profile.owned_store_name|slugify product|slugify %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" style="font-size: smaller;" value="Remove Product" />
+            </form>
+        {% endif %}
+    </div>
+</div>
+{%endfor%}

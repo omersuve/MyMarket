@@ -1,0 +1,27 @@
+<nav class="navbar bg-light navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand mb-0 h1" href="{% url 'home' %}">My Market</a>
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item" style="cursor: auto;">
+            <a class="nav-link" style="pointer-events: none;">Welcome, {{ user.username|title }}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+        {% endif %}
+      </ul>
+    </div>
+</nav>

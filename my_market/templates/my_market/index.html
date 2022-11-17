@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %} HOME {% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-3">
+        <h2>Stores</h2>
+        {% include 'partials/_stores.html' %}
+      </div>
+     <div class="col-3">
+        {% if selected_store %}
+          <h2>Products by {{ selected_store|title }}</h2>
+        {% else %}
+          <h2>All Products</h2>
+        {% endif %}
+        
+        {% include 'partials/_products.html' %}
+     </div>
+     <div class="col-6">
+       {% if user.profile.is_store_owner %}
+           <h3 class="mb-5">You are the Store Owner of: <span class="text-danger">{{ user.profile.owned_store_name|title }}</span></h2>
+           <h4>Add Product</h3>
+           <hr>
+           <form action="{% url 'add_product' user.profile.owned_store_name|slugify %}" method="POST">
+               {% csrf_token %}
+               {% if error %}
+                   <div class="alert alert-danger">{{error}}</div>
+               {% endif %}
+               <div class="mb-3">
+                   <label for="product_name" class="form-label">Product Name</label>
+                   <input type="text" class="form-label" name="product_name">
+               </div>
+               <div class="mb-3">
+                   <label for="price" class="form-label">Price</label>
+                   <input type="number" class="form-label" name="price">
+               </div>
+               <input type="submit" value="AddProduct" class="btn btn-primary">
+           </form>
+       {% else %}
+           <h2 class="text-success">You are Customer</h1>
+           <div class="container">
+            <div class="row">
+              <div class="col-6" style="padding: 0;">
+                <h4 class="mb-5">Favorite Products of the Customer: <span class="text-danger">{{ user.username }}</span></h4>
+                {% for fav_product in fav_products %}
+                  <h5 class="text-info">{{fav_product.name}}</h5><br>
+                {% endfor %}
+              </div>
+              <div class="col-6">
+                <h4 class="mb-5">Favorite Stores of the Customer: <span class="text-danger">{{ user.username }}</span></h4>
+                {% for fav_store in fav_stores %}
+                  <h5 class="text-info">{{fav_store.name}}</h5><br>
+                {% endfor %}
+              </div>
+            </div>
+           </div>
+       {% endif %}
+     </div>
+    </div>
+  </div>
+
+{% endblock %}
