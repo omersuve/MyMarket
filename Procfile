@@ -1,1 +1,0 @@
-web gunicorn marketplace.wsgi:application --log-file -
