@@ -1,7 +1,7 @@
 # MyMarket
 Marketplace written with Django  
 
-This project is written using Django Html and Css  
+This project is written using Django, Html and CSS/Bootstrap  
 
 To install the requirements for this project:
 * __pip install -r requirements.txt__
