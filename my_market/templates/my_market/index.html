@@ -10,7 +10,9 @@
         {% include 'partials/_stores.html' %}
       </div>
      <div class="col-3">
-        {% if selected_store %}
+        {% if selected_store == user.profile.owned_store_name|slugify %}
+          <h2>Your Products</h2>
+        {% elif selected_store %}
           <h2>Products by {{ selected_store|title }}</h2>
         {% else %}
           <h2>All Products</h2>

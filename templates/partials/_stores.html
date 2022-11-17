@@ -5,7 +5,7 @@
         <h5 class="card-title" style="font-size: 1rem;">
         <a href="{% url 'store_details' store.name|slugify %}" style="font-size: smaller;"> Go to Products </a>
         </h5>
-        <p class="card-text mb-0" style="font-size: smaller;"> {{ store.description }} </p>
+        <a href="{% url 'store_details' store.name|slugify %}" style="font-size: smaller;"> Details </a>
         {% if not user.profile.is_store_owner %}
         <form action="{% url 'add_store_user' store.id  %}">
             <input type="submit" style="font-size: smaller;" value="Add To Favorites" />
@@ -13,8 +13,14 @@
         <form action="{% url 'remove_store_user' store.id  %}">
             <input type="submit" style="font-size: smaller;" value="Remove From Favorites" />
         </form>
+        {% else %}
+            {% if user.profile.owned_store_name == store.name %}
+                <form action="{% url 'remove_store_owner' store.slug  %}" method="POST">
+                   {% csrf_token %}
+                    <input type="submit" style="font-size: smaller;" value="Remove your Store" />
+                </form>
+            {% endif %}
         {% endif %}
-
     </div>
 </div>
 {%endfor%}

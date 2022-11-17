@@ -38,6 +38,9 @@ def signup_request(request):
             is_owner = request.POST["is_owner"]
             store_name = request.POST["store_name"]
 
+        print(store_name)
+        print(is_owner)
+
         if password == repassword:
             if User.objects.filter(username=username).exists():
                 return render(

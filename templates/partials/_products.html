@@ -14,7 +14,7 @@
             <input type="submit" style="font-size: smaller;" value="Remove From Favorites" />
         </form>
         {% endif %}
-        {% if user.profile.owned_store_name|slugify == selected_store %}
+        {% if user.profile.owned_store_name|slugify == product.stores.slug %}
             <form action="{% url 'remove_product' user.profile.owned_store_name|slugify product|slugify %}" method="POST">
                 {% csrf_token %}
                 <input type="submit" style="font-size: smaller;" value="Remove Product" />

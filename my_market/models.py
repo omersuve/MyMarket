@@ -20,10 +20,10 @@ class Store(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    image = models.CharField(max_length=50)
+    image = models.CharField(max_length=50, null=True)
     price = models.IntegerField(null=True)
     slug = models.SlugField(null=False, blank=True, db_index=True)
-    stores = models.ManyToManyField(Store)
+    stores = models.ForeignKey(Store, on_delete=models.CASCADE)
     profiles = models.ManyToManyField(Profile)
 
     def __str__(self):

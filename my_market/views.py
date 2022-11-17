@@ -90,6 +90,23 @@ def products_by_store(request, slug):
     return render(request, "my_market/index.html", context)
 
 
+def remove_store(request, s_slug):
+    if request.method == "POST":
+        s = Store.objects.get(slug=s_slug)
+        s.delete()
+        context = {
+            "stores": Store.objects.all(),
+            "selected_store": s_slug,
+        }
+        request.user.profile.is_store_owner = False
+        request.user.profile.owned_store_name = None
+        request.user.save()
+        return render(request, "my_market/index.html", context)
+    else:
+        context = {"stores": Store.objects.all(), "products": Product.objects.all()}
+        return render(request, "my_market/index.html", context)
+
+
 def product_details(request, slug):
     context = {"product": Product.objects.get(slug=slug)}
     return render(request, "my_market/product-details.html", context)
@@ -117,12 +134,12 @@ def add_product(request, slug):
                     "products": Product.objects.all(),
                 },
             )
-        p = Product(name=name, price=price)
+        print(s.name)
+        p = Product.objects.create(name=name, price=price, stores_id=s.id)
         p.save()
-        p.stores.add(s)
         context = {
             "stores": Store.objects.all(),
-            "products": Product.objects.filter(stores__slug=slug),
+            "products": Product.objects.filter(stores__id=s.id),
             "selected_store": slug,
         }
         return render(request, "my_market/index.html", context)

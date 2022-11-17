@@ -9,6 +9,11 @@ urlpatterns = [
     path("removeStore/<int:id>", views.remove_store_user, name="remove_store_user"),
     path("products/<slug:slug>", views.product_details, name="product_details"),
     path("stores/<slug:slug>", views.products_by_store, name="store_details"),
+    path(
+        "stores/<slug:s_slug>/remove",
+        views.remove_store,
+        name="remove_store_owner",
+    ),
     path("stores/<slug:slug>/addProduct", views.add_product, name="add_product"),
     path(
         "stores/<slug:s_slug>/removeProduct/<slug:p_slug>",
