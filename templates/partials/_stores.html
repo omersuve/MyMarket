@@ -1,11 +1,11 @@
 {% for store in stores %}
 <div class="card border-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">{{ store.name|title }}</div>
+    <div class="card-header h5" style="color:rgb(83, 91, 31);">{{ store.name|title }}</div>
     <div class="card-body text-primary">
         <h5 class="card-title" style="font-size: 1rem;">
-        <a href="{% url 'store_details' store.name|slugify %}" style="font-size: smaller;"> Go to Products </a>
+            <a href="{% url 'store_details' store.name|slugify %}" style="font-size: smaller;"> Show the Products </a>
         </h5>
-        <a href="{% url 'store_details' store.name|slugify %}" style="font-size: smaller;"> Details </a>
+        <a href="{% url 'store_info_details' store.name|slugify %}" style="font-size: smaller;"> Store Details </a>
         {% if not user.profile.is_store_owner %}
         <form action="{% url 'add_store_user' store.id  %}">
             <input type="submit" style="font-size: smaller;" value="Add To Favorites" />

@@ -34,12 +34,17 @@ def signup_request(request):
         repassword = request.POST["repassword"]
         is_owner = None
         store_name = None
+        store_description = None
         if "is_owner" in request.POST.keys():
             is_owner = request.POST["is_owner"]
             store_name = request.POST["store_name"]
-
-        print(store_name)
-        print(is_owner)
+            store_description = request.POST["store_description"]
+            if len(store_name) == 0 or len(store_description) == 0:
+                return render(
+                    request,
+                    "account/signup.html",
+                    {"error": "store name and description should be given!"},
+                )
 
         if password == repassword:
             if User.objects.filter(username=username).exists():
@@ -59,8 +64,10 @@ def signup_request(request):
                     p.is_store_owner = False
                     p.owned_store_name = None
                 p.save()
-                if store_name is not None:
-                    new_store = Store.objects.create(name=store_name)
+                if store_name is not None and store_description is not None:
+                    new_store = Store.objects.create(
+                        name=store_name, description=store_description
+                    )
                     new_store.save()
                 return redirect("login")
         else:

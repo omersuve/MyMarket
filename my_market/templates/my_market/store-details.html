@@ -3,6 +3,17 @@
 
 {% block content %}
 
-<h1>Store: {{ store.slug }} owned by {{ user.username }} </h1>
+<div class="d-flex justify-content-center">
+    <div class="card border-secondary mb-3 w-25">
+        <div class="card-header h4">{{ store.name|title }}</div>
+        <div class="card-body text-primary">
+            <h5 class="card-title">
+            {% if store.description is not None %}
+                <p>Description: {{ store.description }} </p>
+            {% endif%}
+            </h5>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

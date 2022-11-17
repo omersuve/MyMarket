@@ -118,13 +118,20 @@ def store_details(request, slug):
     return render(request, "my_market/store-details.html", context)
 
 
+def store_info_details(request, slug):
+    store = Store.objects.get(slug=slug)
+    context = {"store": store}
+    return render(request, "my_market/store-details.html", context)
+
+
 def add_product(request, slug):
     print("slug", slug)
     if request.method == "POST":
         s = Store.objects.get(slug=slug)
         name = request.POST["product_name"]
+        description = request.POST["product_description"]
         price = request.POST["price"]
-        if len(name) == 0 or len(price) == 0:
+        if len(name) == 0 or len(price) == 0 or len(description) == 0 or int(price) < 0:
             return render(
                 request,
                 "my_market/index.html",
@@ -134,8 +141,9 @@ def add_product(request, slug):
                     "products": Product.objects.all(),
                 },
             )
-        print(s.name)
-        p = Product.objects.create(name=name, price=price, stores_id=s.id)
+        p = Product.objects.create(
+            name=name, price=price, description=description, stores_id=s.id
+        )
         p.save()
         context = {
             "stores": Store.objects.all(),
