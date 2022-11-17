@@ -4,13 +4,13 @@ Marketplace written with Django
 This project is written using Django Html and Css  
 
 To install the requirements for this project:
-* pip install -r requirements.txt
+* __pip install -r requirements.txt__
 
 To run the app:
-* python manage.py runserver  
+* __python manage.py runserver__  
 
 To run the tests
-* python manage.py test my_market
+* __python manage.py test my_market__
 
 --) Users can register and login  
 --) Users can be either a Store Owner or Customer  
