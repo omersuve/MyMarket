@@ -23,3 +23,4 @@ To run the tests
 
 --) Store Owners can add products to their store  
 --) Store Owners can remove products from their store  
+--) Store Owners can remove their store   
