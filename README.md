@@ -3,6 +3,9 @@ Marketplace written with Django
 
 This project is written using Django Html and Css  
 
+To install the requirements for this project:
+* pip install -r requirements.txt
+
 To run the app:
 * python manage.py runserver  
 
