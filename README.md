@@ -13,8 +13,12 @@ To do migrations:
 To run the app:
 * __python manage.py runserver__   
 
-To run the tests
+To run the tests:
 * __python manage.py test my_market__
+
+To create admin account and see all the models:
+* __python manage.py createsuperuser__  
+  Then see __localhost:8000/admin__ page
 
 --) Users can register and login  
 --) Users can be either a Store Owner or Customer  
