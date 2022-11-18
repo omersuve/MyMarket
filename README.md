@@ -7,7 +7,8 @@ To install the requirements for this project:
 * __pip install -r requirements.txt__
 
 To do migrations:
-* __python manage.py makemigrations__  
+* __python manage.py makemigrations account__  
+* __python manage.py makemigrations my_market__  
 * __python manage.py migrate__  
 
 To run the app:
