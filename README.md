@@ -34,4 +34,4 @@ To create admin account and see all the models:
 
 --) Store Owners can add products to their store  
 --) Store Owners can remove products from their store  
---) Store Owners can remove their store   
+--) Store Owners can remove their store. After removing, he/she become a Customer  
