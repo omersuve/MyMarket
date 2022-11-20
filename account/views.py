@@ -10,7 +10,10 @@ def login_request(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-
+        if len(username) == 0 or len(password) == 0:
+            return render(
+                request, "account/login.html", {"error": "all fields required!"}
+            )
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -32,6 +35,10 @@ def signup_request(request):
         username = request.POST["username"]
         password = request.POST["password"]
         repassword = request.POST["repassword"]
+        if len(username) == 0 or len(password) == 0 or len(repassword) == 0:
+            return render(
+                request, "account/signup.html", {"error": "all fields required!"}
+            )
         is_owner = None
         store_name = None
         store_description = None
