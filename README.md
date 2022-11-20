@@ -6,11 +6,20 @@ This project is written using Django, Html and CSS/Bootstrap
 To install the requirements for this project:
 * __pip install -r requirements.txt__
 
-To run the app:
-* __python manage.py runserver__  
+To do migrations:
+* __python manage.py makemigrations account__  
+* __python manage.py makemigrations my_market__  
+* __python manage.py migrate__  
 
-To run the tests
+To run the app:
+* __python manage.py runserver__   
+
+To run the tests:
 * __python manage.py test my_market__
+
+To create admin account and see all the models:
+* __python manage.py createsuperuser__  
+  Then see __localhost:8000/admin__ page
 
 --) Users can register and login  
 --) Users can be either a Store Owner or Customer  
@@ -25,4 +34,4 @@ To run the tests
 
 --) Store Owners can add products to their store  
 --) Store Owners can remove products from their store  
---) Store Owners can remove their store   
+--) Store Owners can remove their store. After removing, he/she becomes a Customer  
